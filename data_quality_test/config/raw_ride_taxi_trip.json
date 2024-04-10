@@ -1,0 +1,158 @@
+{
+    "data_product_name": "raw_ride_taxi_trip",
+    "columns" : [
+        {
+            "column_name" : "id",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                },
+                {
+                    "rule_name" : "check_if_unique",
+                    "metric" : "Uniqueness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "vendor_id",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                },
+                {
+                    "rule_name" : "check_if_values_in_list",
+                    "metric" : "Validity",
+                    "add_info" : {
+                        "value_set" : [1,2,3,4,5]
+                    }
+                }
+            ]
+        },
+        {
+            "column_name" : "pickup_datetime",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "dropoff_datetime",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "passenger_count",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                },
+                {
+                    "rule_name" : "check_if_values_in_list",
+                    "metric" : "Validity",
+                    "add_info" : {
+                        "value_set" : [1,2,3]
+                    }
+                }
+            ]
+        },
+        {
+            "column_name" : "pickup_longitude",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "pickup_latitude",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "dropoff_longitude",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "dropoff_latitude",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "store_and_fwd_flag",
+            "dq_rule(s)" : []
+        },
+        {
+            "column_name" : "gc_distance",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "trip_duration",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "google_distance",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        },
+        {
+            "column_name" : "google_duration",
+            "dq_rule(s)" : [
+                {
+                    "rule_name" : "check_if_not_null",
+                    "metric" : "Completeness",
+                    "add_info" : {}
+                }
+            ]
+        }
+    ]
+}
