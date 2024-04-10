@@ -9,12 +9,7 @@ from unittest.mock import MagicMock, patch
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
-from pyspark.sql.types import (
-    StructType,
-    StructField,
-    IntegerType,
-    StringType
-)
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType
 
 
 from src.lib.utils import (
@@ -23,8 +18,9 @@ from src.lib.utils import (
     schema_reader,
     compare_schema,
     update_schema_registry,
-    append_data_to_destination
+    append_data_to_destination,
 )
+
 
 def test_session_terminator():
     spark_session_mock = MagicMock()
@@ -38,7 +34,9 @@ def test_get_df(mocker, tmp_path):
         SparkSession.builder.appName("SchemaEnforcement")
         .config("spark.driver.bindAddress", "127.0.0.1")
         .config("spark.streaming.stopGracefullyOnShutdown", True)
-        .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0")
+        .config(
+            "spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0"
+        )
         .config("spark.driver.host", "localhost")
         .getOrCreate()
     )
@@ -48,8 +46,7 @@ def test_get_df(mocker, tmp_path):
         {"id": 2, "name": "Bob"},
     ]
     expected_df = spark_session.createDataFrame(data_dict).select(
-        col("id").cast('int'),
-        col("name")
+        col("id").cast("int"), col("name")
     )
 
     with patch("src.lib.utils.root_path", tmp_path) as mock_path:
@@ -169,15 +166,17 @@ def test_update_schema_registry_update_file():
     }
 
     compare_schema_return = {
-            "new_column": {"dob"},
-            "deleted_column": {"city"},
-            "diff_data_type": [
-                {"name": "age", "registered_type": "integer", "source_type": "string"}
-            ],
-        }
+        "new_column": {"dob"},
+        "deleted_column": {"city"},
+        "diff_data_type": [
+            {"name": "age", "registered_type": "integer", "source_type": "string"}
+        ],
+    }
 
     with patch("pathlib.Path.exists", return_value=True):
-        with patch("src.lib.utils.compare_schema", return_value=compare_schema_return) as compare_mock:
+        with patch(
+            "src.lib.utils.compare_schema", return_value=compare_schema_return
+        ) as compare_mock:
             with patch("json.load", registered_schema_mock):
                 with patch("builtins.open", mock.mock_open()) as new_open:
                     with patch("json.dump", return_value=MagicMock()) as mock_dump:
@@ -202,7 +201,7 @@ def test_append_data_to_destination_table_exist():
 
     registered_schema_mock = MagicMock(
         return_value={
-                "fields": [
+            "fields": [
                 {"name": "id", "type": "integer", "nullable": True},
                 {"name": "name", "type": "string", "nullable": True},
                 {"name": "age", "type": "integer", "nullable": True},
@@ -212,20 +211,34 @@ def test_append_data_to_destination_table_exist():
         }
     )
 
-    expected_schema_struct = StructType([StructField('id', IntegerType(), True), StructField('name', StringType(), True), StructField('age', IntegerType(), True), StructField('city', StringType(), True), StructField('dob', StringType(), True)])
+    expected_schema_struct = StructType(
+        [
+            StructField("id", IntegerType(), True),
+            StructField("name", StringType(), True),
+            StructField("age", IntegerType(), True),
+            StructField("city", StringType(), True),
+            StructField("dob", StringType(), True),
+        ]
+    )
 
     with patch("builtins.open", mock.mock_open()) as new_open:
         with patch("json.load", registered_schema_mock):
-            with patch("pyspark.sql.SparkSession.createDataFrame", return_value=MagicMock()) as mock_create_df:
+            with patch(
+                "pyspark.sql.SparkSession.createDataFrame", return_value=MagicMock()
+            ) as mock_create_df:
                 with patch("src.lib.utils.session_terminator") as terminator_mock:
-                    updated_df = append_data_to_destination(dataset, table_name, spark_source_df, spark_existing_df)
+                    updated_df = append_data_to_destination(
+                        dataset, table_name, spark_source_df, spark_existing_df
+                    )
 
                     spark_existing_df.unionByName.assert_called_once_with(
                         spark_source_df, allowMissingColumns=True
                     )
 
-                    mock_create_df.assert_called_once_with(spark_existing_df.unionByName.return_value.rdd, expected_schema_struct)
+                    mock_create_df.assert_called_once_with(
+                        spark_existing_df.unionByName.return_value.rdd,
+                        expected_schema_struct,
+                    )
                     updated_df.repartition.assert_called_once_with(1)
 
                     terminator_mock.assert_called_once()
-                    
