@@ -8,7 +8,7 @@ Hello! First of all, thank you so much for the opportunity for allowing me to do
 3. Install all dependencies:
 ```pip install -r requirements.txt```
 4. You're good to go.
-
+#
 # Part 1: Data Schema Enforcement with PySpark
 ### Task
 Imagine, you are in an environment where applications are constantly evolving to meet market demands, schema
@@ -56,7 +56,7 @@ You can run the job, using `spark-submit` command.
 
     spark-submit src/ride-request.py
 
-
+#
 # Part 2: Data Quality with PySpark
 ### Task
 Ensuring the quality of data is crucial for any organization relying on data-driven decision-making. You are tasked with preparing a report on data quality and profiling for the dataset after each run and sharing it with the leadership team.
@@ -126,6 +126,8 @@ You can run the job, using `spark-submit` command.
 
     spark-submit src/taxi-trip.py
 
+
+#
 # Part 3: Data Modelling
 ### Task
 XYZ, a Super App that encompasses taxi services, food and grocery delivery, and last-mile delivery services. You are asked to design a scalable and optimized data model for a taxi service domain to serve ad-hoc, self-serve and advance analytics requests.
