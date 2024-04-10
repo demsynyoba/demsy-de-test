@@ -173,7 +173,7 @@ def append_data_to_destination(dataset, table_name, source_df, existing_df=None)
 
     # Update data type by using new schema
     updated_df = spark_session.createDataFrame(merged_df.rdd, registered_schema)
-    print(type(updated_df))
+
     updated_df.show()
     updated_df.printSchema()
 
