@@ -10,16 +10,6 @@ Hello! First of all, thank you so much for the opportunity for allowing me to do
 4. You're good to go.
 #
 # Part 1: Data Schema Enforcement with PySpark
-### Task
-Imagine, you are in an environment where applications are constantly evolving to meet market demands, schema
-evolution becomes an inevitable aspect. As a Data team, we must be prepared to adapt to these changes.
-Deliverables:
-- Propose a design solution on how to manage this schema evolution situation dynamically on the data pipelines.
-- Prepare a PySpark pipeline by implementing the proposed solution.
-
-Use cases must be considered in the solution:
-- Addition of new data fields in the existing schema of the source records
-- Update of the data type of an existing field of the source record
 
 ### Solution
 #### Assumption
@@ -58,15 +48,6 @@ You can run the job, using `spark-submit` command.
 
 #
 # Part 2: Data Quality with PySpark
-### Task
-Ensuring the quality of data is crucial for any organization relying on data-driven decision-making. You are tasked with preparing a report on data quality and profiling for the dataset after each run and sharing it with the leadership team.
-Deliverables:
-- Present a design solution utilizing any data quality framework and provide reasoning to support its selection.
-- Develop a PySpark pipeline to implement the proposed solution and detail the structure of the quality report.
-
-Assumption:
-- You can choose any available open-source Data Quality frameworks which supports PySpark.
-- You can choose your own data source.
 
 ### Solution
 #### Assumption
@@ -129,12 +110,6 @@ You can run the job, using `spark-submit` command.
 
 #
 # Part 3: Data Modelling
-### Task
-XYZ, a Super App that encompasses taxi services, food and grocery delivery, and last-mile delivery services. You are asked to design a scalable and optimized data model for a taxi service domain to serve ad-hoc, self-serve and advance analytics requests.
-Deliverables:
-- Create all necessary data structures required for the model.
-- Design a physical data model for the taxi service domain.
-- List some KPI’s can be derived from the proposed data model with the appropriate SQL queries.
 
 ### Solution
 #### Assumption
