@@ -1,3 +1,4 @@
+
 # Data Engineering Test - Demsy Iman M
 
 Hello! First of all, thank you so much for the opportunity for allowing me to do this first stage of the interview. I've put all of my answers below, including the explanation, images, etc. Hopefully my answers will satisfy the requirements!
@@ -260,4 +261,10 @@ from hourly_trip
 group by 1
 order by 2 desc
 
+```
+
+## Running test
+1. I'm using `pytest` for creating the unit test. So you can run this command to execute the unit test:
+```
+pytest  -s -vv -W ignore::DeprecationWarning
 ```
